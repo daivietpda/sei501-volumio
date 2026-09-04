@@ -1,0 +1,10 @@
+[Unit]
+Description=Volumio HTTP port 80 socket
+
+[Socket]
+ListenStream=80
+NoDelay=true
+
+[Install]
+WantedBy=sockets.target
+

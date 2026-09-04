@@ -1,0 +1,80 @@
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /bifrost: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /timer_bc: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /arm_pmu: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /pm: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /cpu_iomap/io_cbus_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /cpu_iomap/io_apb_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /cpu_iomap/io_aobus_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /cpu_iomap/io_vapb_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /cpu_iomap/io_hiu_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /pinctrl@ff800014: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /pinctrl@ff634480: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /saradc: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /soc/cbus@ffd00000/meson_clk_msr: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /soc/cbus@ffd00000/i2c@1c000/bl_extern_i2c: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /soc/aobus@ff800000/cpu_version: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /soc/audiobus@0xff642000/audio_clocks: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /aocec: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /canvas: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /ge2d: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /codec_io/io_cbus_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /codec_io/io_dos_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /codec_io/io_hiubus_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /codec_io/io_aobus_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /codec_io/io_vcbus_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /codec_io/io_dmc_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /codec_io/io_efuse_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /hevc_enc/io_reg_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /meson-irblaster: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /meson-cooldev@0: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /thermal-zones/soc_thermal/trips/trip-point@0: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /thermal-zones/soc_thermal/trips/trip-point@1: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /thermal-zones/soc_thermal/trips/trip-point@2: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /thermal-zones/soc_thermal/trips/trip-point@3: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /thermal-zones/ddr_thermal/trips/trip-point@0: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /thermal-zones/ddr_thermal/trips/trip-point@1: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /thermal-zones/ddr_thermal/trips/trip-point@2: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /thermal-zones/ddr_thermal/trips/trip-point@3: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /aml_snd_iomap/pdm_bus: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /aml_snd_iomap/audiobus_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /aml_snd_iomap/audiolocker_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /aml_snd_iomap/eqdrc_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /aml_snd_iomap/reset_base: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /ddr_bandwidth: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /defendkey: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /aml_dma: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /memory@00000000: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /reserved-memory/linux,secos: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /t9015: node has a reg or ranges property, but no unit name
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /auge_sound/aml-audio-card,dai-link@0: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /auge_sound/aml-audio-card,dai-link@1: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /auge_sound/aml-audio-card,dai-link@2: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /auge_sound/aml-audio-card,dai-link@3: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /auge_sound/aml-audio-card,dai-link@4: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_vs_reg): /auge_sound/aml-audio-card,dai-link@5: node has a unit name, but no reg or ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (pci_bridge): /pcieA@fc000000: node name is not "pci" or "pcie"
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unit_address_format): Failed prerequisite 'pci_bridge'
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (pci_device_reg): Failed prerequisite 'pci_bridge'
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (pci_device_bus_num): Failed prerequisite 'pci_bridge'
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/cbus@ffd00000/meson_clk_msr: simple-bus unit address format error, expected "18004"
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/aobus@ff800000/cpu_version: simple-bus unit address format error, expected "220"
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/ion_dev: missing or empty reg/ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/audiobus@0xff642000: simple-bus unit address format error, expected "ff642000"
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/audiobus@0xff642000/audio_clocks: simple-bus unit address format error, expected "0"
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/audiobus@0xff642000/ddr_manager: missing or empty reg/ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/audiobus@0xff642000/tdma: missing or empty reg/ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/audiobus@0xff642000/tdmb: missing or empty reg/ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/audiobus@0xff642000/tdmc: missing or empty reg/ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/audiobus@0xff642000/i2s2hdmi: missing or empty reg/ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/audiobus@0xff642000/spdif: missing or empty reg/ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/audiobus@0xff642000/spdif_b: missing or empty reg/ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/audiobus@0xff642000/pdm: missing or empty reg/ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/audiobus@0xff642000/loopback: missing or empty reg/ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/audiobus@0xff642000/resample: missing or empty reg/ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (simple_bus_reg): /soc/audiobus@0xff642000/pwrdet: missing or empty reg/ranges property
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (i2c_bus_reg): /soc/cbus@ffd00000/i2c@1c000/ad82584f_62@62: I2C bus unit address format error, expected "31"
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (i2c_bus_reg): /soc/cbus@ffd00000/i2c@1c000/tas5707_36@36: I2C bus unit address format error, expected "1b"
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (i2c_bus_reg): /soc/cbus@ffd00000/i2c@1c000/bl_extern_i2c: I2C bus unit address format error, expected "2c"
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unique_unit_address): /sd1@ffe05000: duplicate unit-address (also used in node /sd2@ffe05000)
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (unique_unit_address): /nfc@0: duplicate unit-address (also used in node /meson-cooldev@0)
+/mnt/wsl/PHYSICALDRIVE5p1/volumio/board/sei501/stock/stock-sei501.dts: Warning (gpios_property): /__symbols__:gpio: property size (33) is invalid, expected multiple of 4

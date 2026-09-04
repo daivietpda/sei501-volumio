@@ -1,0 +1,13 @@
+[Unit]
+Description=SEI501 HDMI and AV audio routing
+After=volumio.service
+PartOf=volumio.service
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/sleep 20
+ExecStart=/usr/local/sbin/sei501-audio-init
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

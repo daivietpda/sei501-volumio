@@ -1,0 +1,10 @@
+{
+  "playerName":{"value":"Volumio","type":"string"},
+  "startupSound":{"value":true,"type":"boolean"},
+  "kernelSettingValue":{"value":1,"type":"number"},
+  "kernelSettingLabel":{"value":"Default","type":"string"},
+  "device":{"value":"","type":"string"},
+  "usbboot":{"value":"","type":"string"},
+  "show_wizard":{"value":false,"type":"boolean"},
+  "first_start":{"value":false,"type":"boolean"}
+}

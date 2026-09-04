@@ -1,0 +1,13 @@
+#!/bin/sh
+/usr/bin/amixer -q -c SEI501 cset "name=TOHDMITX Switch" on || true
+/usr/bin/amixer -q -c SEI501 cset "name=TOHDMITX I2S SRC" "I2S A" || true
+/usr/bin/amixer -q -c SEI501 cset "name=FRDDR_A SRC 1 EN Switch" on || true
+
+/usr/bin/amixer -q -c SEI501 cset "name=TDMOUT_B SRC SEL" 1 || true
+/usr/bin/amixer -q -c SEI501 cset "name=FRDDR_B SINK 2 SEL" 1 || true
+/usr/bin/amixer -q -c SEI501 cset "name=FRDDR_B SRC 2 EN Switch" on || true
+/usr/bin/amixer -q -c SEI501 cset "name=TOACODEC SRC" 1 || true
+/usr/bin/amixer -q -c SEI501 cset "name=TOACODEC OUT EN Switch" on || true
+/usr/bin/amixer -q -c SEI501 cset "name=ACODEC Playback Switch" on || true
+/usr/bin/amixer -q -c SEI501 cset "name=ACODEC Playback Volume" 210,210 || true
+exit 0

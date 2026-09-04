@@ -1,0 +1,35 @@
+# SEI501 Volumio integration repository
+# Generated build trees and assembled rootfs
+build/
+mnt/rootfs/
+mnt/images/
+mnt/tmp/
+out/
+.volumio-kernel-update/
+
+# Full upstream checkouts are pinned by SOURCES.lock.md and intentionally kept
+# outside this integration repository.
+src/
+
+# Large/generated platform payloads
+board/sei501/rootfs/
+*.img
+*.img.*
+*.sqsh
+*.tar
+*.tar.xz
+*.zip
+*.PARTITION
+DDR.USB
+
+# Local/editor/cache material
+.volumio_staging/
+.cache/
+__pycache__/
+*.pyc
+
+# Planning documents are kept locally, not versioned
+PLAN*.md
+
+# Private Markdown notes are local-only
+*.md

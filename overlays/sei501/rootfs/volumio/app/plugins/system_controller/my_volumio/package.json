@@ -1,0 +1,12 @@
+{
+  "name": "my_volumio",
+  "version": "1.0.0-sei501",
+  "description": "Open-source login token bridge for Volumio community images",
+  "main": "index.js",
+  "author": "SEI501 port",
+  "license": "MIT",
+  "volumio_info": {
+    "plugin_type": "system_controller",
+    "boot_priority": 2
+  }
+}
