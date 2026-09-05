@@ -1,12 +1,12 @@
 [Unit]
 Description=SEI501 onboard SDIO Wi-Fi initialization recovery
 After=systemd-udev-trigger.service
-Before=volumio.service
+Before=wireless.service volumio.service
 
 [Service]
 Type=oneshot
 ExecStart=/usr/local/sbin/sei501-wifi-init
-TimeoutStartSec=45
+TimeoutStartSec=120
 RemainAfterExit=yes
 
 [Install]

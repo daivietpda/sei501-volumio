@@ -474,8 +474,8 @@
 
 	bus-width = <4>;
 	cap-sd-highspeed;
-	/* RTL8822BS SDIO wiring is marginal at UHS rates on SEI501. */
-	max-frequency = <25000000>;
+	/* Keep RTL8822BS below the marginal 25 MHz point on SEI501. */
+	max-frequency = <12500000>;
 
 	non-removable;
 	disable-wp;
