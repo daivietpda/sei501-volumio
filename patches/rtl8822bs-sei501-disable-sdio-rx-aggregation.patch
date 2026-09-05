@@ -1,0 +1,33 @@
+--- a/src/rtl8822bs-aml/hal/hal_halmac.c
++++ b/src/rtl8822bs-aml/hal/hal_halmac.c
+@@ -20,6 +20,12 @@
+ 
+ #define DEFAULT_INDICATOR_TIMELMT	1000	/* ms */
+ #define MSG_PREFIX			"[HALMAC]"
++#if defined(CONFIG_SDIO_HCI) && defined(CONFIG_80211N_HT)
++extern int rtw_ampdu_enable;
++#define RTW_DEFAULT_RX_AGG_ENABLE (rtw_ampdu_enable ? _TRUE : _FALSE)
++#else
++#define RTW_DEFAULT_RX_AGG_ENABLE _TRUE
++#endif
+ 
+ #define RTW_HALMAC_DLFW_MEM_NO_STOP_TX
+ 
+@@ -2913,7 +2919,7 @@
+ 			return -1;
+ 
+ 		/* 8. Config RX Aggregation */
+-		err = rtw_halmac_rx_agg_switch(d, _TRUE);
++		err = rtw_halmac_rx_agg_switch(d, RTW_DEFAULT_RX_AGG_ENABLE);
+ 		if (err)
+ 			return -1;
+ 
+@@ -2974,7 +2980,7 @@
+ 	if (status != HALMAC_RET_SUCCESS)
+ 		goto out;
+ 
+-	err = rtw_halmac_rx_agg_switch(d, _TRUE);
++	err = rtw_halmac_rx_agg_switch(d, RTW_DEFAULT_RX_AGG_ENABLE);
+ 	if (err)
+ 		goto out;
+ 
