@@ -237,6 +237,21 @@ ControllerNetwork.prototype.getWirelessNetworks = function (defer) {
   var defer = libQ.defer();
 
   var wireless_enabled_setting = config.get('wireless_enabled', true);
+  var onboardDriver = '';
+  try {
+    onboardDriver = fs.realpathSync('/sys/class/net/wlan0/device/driver');
+  } catch (driverError) {
+    onboardDriver = '';
+  }
+  // RTL8822BS on SEI501 wedges the dedicated G12A SDIO bus even on a
+  // failing `iwlist scan`; return the cached empty result before invoking it.
+  if (wireless_enabled_setting && onboardDriver.indexOf('/rtl88x2bs') !== -1) {
+    exself.logger.warn('Skipping active scan for SEI501 RTL8822BS driver');
+    var unsupportedResults = {'available': []};
+    wirelessNetworksScanCache = unsupportedResults;
+    defer.resolve(unsupportedResults);
+    return defer.promise;
+  }
   if (wireless_enabled_setting) {
     iwlist.scan('wlan0', function (err, networks) {
       var self = this;

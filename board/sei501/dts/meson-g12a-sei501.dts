@@ -473,9 +473,9 @@
 	#size-cells = <0>;
 
 	bus-width = <4>;
-	cap-sd-highspeed;
-	/* Keep RTL8822BS below the marginal 25 MHz point on SEI501. */
-	max-frequency = <12500000>;
+	/* The onboard RTL8822BS intermittently returns SDIO CRC/EILSEQ errors at 12.5 MHz. */
+	/* Use legacy timing and a conservative clock for reliable Wi-Fi on this board. */
+	max-frequency = <6000000>;
 
 	non-removable;
 	disable-wp;

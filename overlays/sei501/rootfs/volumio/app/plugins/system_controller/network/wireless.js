@@ -2112,6 +2112,14 @@ function checkInterfaceReleased() {
 // Used to determine if hotspot fallback should be enabled
 function isConfiguredSSIDVisible() {
     loggerDebug("Checking if configured SSID is visible in scan results");
+    if (isSei501VendorWifi()) {
+        // An active scan wedges the dedicated G12A SDIO bus on this board.
+        try {
+            return fs.readFileSync('/sys/class/net/wlan0/operstate', 'utf8').trim() === 'up';
+        } catch (e) {
+            return false;
+        }
+    }
     try {
         const config = getWirelessConfiguration();
         const ssid = config.wlanssid?.value;
@@ -2364,12 +2372,26 @@ function retrieveEnvParameters() {
 // REGULATORY DOMAIN FUNCTIONS
 // ===================================================================
 
+// The SEI501 onboard RTL8822BS vendor driver cannot tolerate active scans.
+// Keep all regulatory/network discovery paths free of `iw wlan0 scan`.
+function isSei501VendorWifi() {
+    try {
+        return fs.realpathSync('/sys/class/net/wlan0/device/driver').indexOf('/rtl88x2bs') !== -1;
+    } catch (e) {
+        return false;
+    }
+}
+
 // Detect and apply appropriate wireless regulatory domain
 // Scans for country codes in AP beacons and sets most common one
 // FIX: Always scan and apply regdomain on every startup (fixes MP1 China regdomain)
 // PRE: Interface must be UP (ensureInterfaceReady called before this)
 function detectAndApplyRegdomain(callback) {
     if (isWirelessDisabled()) {
+        return callback();
+    }
+    if (isSei501VendorWifi()) {
+        loggerInfo('SEI501 RTL8822BS: skipping active regulatory scan (SDIO scan instability)');
         return callback();
     }
     try {
