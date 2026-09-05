@@ -29,7 +29,7 @@ BOOT_TYPE=msdos
 BOOT_USE_UUID=yes
 INIT_TYPE="initv3"
 
-MODULES=("overlay" "squashfs" "nls_cp437" "nls_utf8")
+MODULES=(overlay squashfs nls_cp437 nls_utf8 rfkill cfg80211 8822bs)
 PACKAGES=("iw" "wireless-regdb" "wpasupplicant" "alsa-utils")
 
 write_device_files() {
