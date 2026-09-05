@@ -451,14 +451,15 @@
 &sdio_pins {
 	mux {
 		bias-pull-up;
-		drive-strength-microamp = <3000>;
+		/* Android stock uses drive-strength level 3 (maximum). */
+		drive-strength-microamp = <4000>;
 	};
 };
 
 &sdio_clk_gate_pins {
 	mux {
 		bias-pull-down;
-		drive-strength-microamp = <3000>;
+		drive-strength-microamp = <4000>;
 	};
 };
 
