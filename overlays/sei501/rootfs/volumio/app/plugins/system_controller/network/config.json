@@ -1,5 +1,5 @@
 {
-  "wireless_enabled":{"value":false,"type":"boolean"},
+  "wireless_enabled":{"value":true,"type":"boolean"},
   "enable_hotspot":{"value":false,"type":"boolean"},
   "dhcp":{"value":true,"type":"boolean"},
   "ethip":{"value":"127.0.0.1","type":"string"},

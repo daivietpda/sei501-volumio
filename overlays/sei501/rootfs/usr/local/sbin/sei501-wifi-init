@@ -1,0 +1,32 @@
+#!/bin/sh
+set -eu
+controller=/sys/bus/platform/drivers/meson-gx-mmc
+device=ffe03000.mmc
+has_wifi() {
+    for interface in /sys/class/net/*; do
+        [ -d "$interface/wireless" ] || continue
+        case "$(readlink -f "$interface/device")" in
+            */ffe03000.mmc/*) return 0 ;;
+        esac
+    done
+    return 1
+}
+count=0
+while [ "$count" -lt 10 ]; do
+    has_wifi && exit 0
+    sleep 1
+    count=$((count + 1))
+done
+[ -L "$controller/$device" ] || exit 1
+echo 'SEI501: recovering onboard SDIO Wi-Fi after failed initial probe'
+printf '%s' "$device" > "$controller/unbind"
+sleep 1
+printf '%s' "$device" > "$controller/bind"
+count=0
+while [ "$count" -lt 15 ]; do
+    has_wifi && exit 0
+    sleep 1
+    count=$((count + 1))
+done
+echo 'SEI501: onboard Wi-Fi did not initialize' >&2
+exit 1
