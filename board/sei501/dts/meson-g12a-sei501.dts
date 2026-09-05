@@ -472,9 +472,9 @@
 	#address-cells = <1>;
 	#size-cells = <0>;
 
-	bus-width = <4>;
-	/* The onboard RTL8822BS intermittently returns SDIO CRC/EILSEQ errors at 12.5 MHz. */
-	/* Use legacy timing and a conservative clock for reliable Wi-Fi on this board. */
+	bus-width = <1>;
+	/* Use 1-bit legacy SDIO: 4-bit CMD53 reads still corrupt under sustained load. */
+	/* The lower throughput is intentional; it prioritizes reliable Wi-Fi on SEI501. */
 	max-frequency = <6000000>;
 
 	non-removable;
