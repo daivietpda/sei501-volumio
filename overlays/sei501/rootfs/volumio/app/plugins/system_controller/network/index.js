@@ -237,48 +237,18 @@ ControllerNetwork.prototype.getWirelessNetworks = function (defer) {
   var defer = libQ.defer();
 
   var wireless_enabled_setting = config.get('wireless_enabled', true);
-  var onboardDriver = '';
-  try {
-    onboardDriver = fs.realpathSync('/sys/class/net/wlan0/device/driver');
-  } catch (driverError) {
-    onboardDriver = '';
-  }
-  // RTL8822BS on SEI501 wedges the dedicated G12A SDIO bus even on a
-  // failing `iwlist scan`; return the cached empty result before invoking it.
-  if (wireless_enabled_setting && onboardDriver.indexOf('/rtl88x2bs') !== -1) {
-    exself.logger.warn('Skipping active scan for SEI501 RTL8822BS driver');
-    var unsupportedResults = {'available': []};
-    wirelessNetworksScanCache = unsupportedResults;
-    defer.resolve(unsupportedResults);
-    return defer.promise;
-  }
   if (wireless_enabled_setting) {
     iwlist.scan('wlan0', function (err, networks) {
       var self = this;
 
       if (err) {
         exself.logger.error('An error occurred while scanning: ' + err);
-        var onboardDriver = '';
-        try {
-          onboardDriver = fs.realpathSync('/sys/class/net/wlan0/device/driver');
-        } catch (driverError) {
-          onboardDriver = '';
-        }
-        // RTL8822BS on SEI501 has no safe scan operation: ap-force can wedge
-        // the dedicated G12A SDIO bus and make the driver report SurpriseRemoved.
-        if (onboardDriver.indexOf('/rtl88x2bs') !== -1) {
-          exself.logger.warn('Skipping fallback scan for SEI501 RTL8822BS driver');
-          var unsupportedResults = {'available': []};
-          wirelessNetworksScanCache = unsupportedResults;
-          defer.resolve(unsupportedResults);
-          return;
-        }
-        exself.logger.info('Cannot use regular scanning, forcing with ap-force');
+        exself.logger.info('Cannot use iwlist scanning, trying nl80211 scan');
         var networksarray = [];
         var arraynumber = 0;
 
         try {
-          var wirelessnets = execSync('/usr/bin/sudo /usr/bin/timeout --kill-after=1s 5s /sbin/iw dev wlan0 scan ap-force', {encoding: 'utf8', timeout: 7000, killSignal: 'SIGKILL'});
+          var wirelessnets = execSync('/usr/bin/timeout --kill-after=1s 5s /usr/bin/sudo -n /sbin/iw dev wlan0 scan', {encoding: 'utf8', timeout: 7000, killSignal: 'SIGKILL'});
 
           var wirelessnets2 = wirelessnets.split('(on wlan0)');
           for (var i = 0; i < wirelessnets2.length; i++) {
