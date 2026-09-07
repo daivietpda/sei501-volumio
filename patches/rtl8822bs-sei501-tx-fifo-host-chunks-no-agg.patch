@@ -1,0 +1,98 @@
+diff --git a/include/autoconf.h b/include/autoconf.h
+index b662d89..8373b6b 100644
+--- a/include/autoconf.h
++++ b/include/autoconf.h
+@@ -144,7 +144,7 @@
+ /*
+  * Interface Related Config
+  */
+-#define CONFIG_TX_AGGREGATION
++/* #define CONFIG_TX_AGGREGATION */
+ #define CONFIG_XMIT_THREAD_MODE	/* necessary for SDIO */
+ #define RTW_XMIT_THREAD_HIGH_PRIORITY
+ /*#define RTW_XMIT_THREAD_HIGH_PRIORITY_AGG*/
+diff --git a/os_dep/linux/sdio_ops_linux.c b/os_dep/linux/sdio_ops_linux.c
+index 791accb..50d8e18 100644
+--- a/os_dep/linux/sdio_ops_linux.c
++++ b/os_dep/linux/sdio_ops_linux.c
+@@ -15,6 +15,7 @@
+ #define _SDIO_OPS_LINUX_C_
+ 
+ #include <drv_types.h>
++#include <linux/mmc/host.h>
+ 
+ inline bool rtw_is_sdio30(_adapter *adapter)
+ {
+@@ -969,10 +970,34 @@ int __must_check rtw_sdio_raw_read(struct dvobj_priv *d, unsigned int addr,
+ 			dev_info(&func->dev, "%s: sdio read 53 addr 0x%x, %zu bytes\n",
+ 				 __func__, addr, len);
+ #endif
+-			if (fixed)
++			if (!fixed && (addr & 0x1e000) == 0x0e000) {
++				struct mmc_host *host = func->card->host;
++				u8 *next = buf;
++				size_t remaining = len;
++
++				/* RX FIFO address is a sequence token, not a linear
++				 * memory window. Match rtw88's read_port: split at the
++				 * host limit without advancing the FIFO address.
++				 * Drain every chunk on error to preserve packet framing.
++				 */
++				error = 0;
++				while (remaining) {
++					size_t bytes = min_t(size_t, host->max_req_size,
++							     remaining);
++					int chunk_error;
++
++					chunk_error = sdio_memcpy_fromio(func, next,
++								 addr, bytes);
++					if (chunk_error && !error)
++						error = chunk_error;
++					remaining -= bytes;
++					next += bytes;
++				}
++			} else if (fixed) {
+ 				error = sdio_readsb(func, buf, addr, len);
+-			else
++			} else {
+ 				error = sdio_memcpy_fromio(func, buf, addr, len);
++			}
+ 		}
+ 	}
+ 
+@@ -1089,10 +1114,33 @@ int __must_check rtw_sdio_raw_write(struct dvobj_priv *d, unsigned int addr,
+ 			dev_info(&func->dev, "%s: sdio write 53 addr 0x%x, %zu bytes\n",
+ 				 __func__, addr, len);
+ #endif
+-			if (fixed)
++			if (!fixed && !(addr & 0x10000) && (addr & 0x08000)) {
++				struct mmc_host *host = func->card->host;
++				u8 *next = buf;
++				size_t remaining = len;
++
++				/* TX FIFO address encodes queue ID and packet length.
++				 * Like RX FIFO, match rtw88's port semantics: split at the
++				 * host limit without advancing the FIFO address.
++				 */
++				error = 0;
++				while (remaining) {
++					size_t bytes = min_t(size_t, host->max_req_size,
++							     remaining);
++					int chunk_error;
++
++					chunk_error = sdio_memcpy_toio(func, addr,
++								       next, bytes);
++					if (chunk_error && !error)
++						error = chunk_error;
++					remaining -= bytes;
++					next += bytes;
++				}
++			} else if (fixed) {
+ 				error = sdio_writesb(func, addr, buf, len);
+-			else
++			} else {
+ 				error = sdio_memcpy_toio(func, addr, buf, len);
++			}
+ 		}
+ 	}
+ 

@@ -1,9 +1,8 @@
 # SEI501 Volumio integration repository
 # Generated build trees and assembled rootfs
 build/
-mnt/rootfs/
-mnt/images/
-mnt/tmp/
+build-*/
+mnt/
 out/
 .volumio-kernel-update/
 
