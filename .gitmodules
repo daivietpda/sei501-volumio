@@ -1,0 +1,6 @@
+[submodule "src/rtl8822bs-aml"]
+	path = src/rtl8822bs-aml
+	url = https://github.com/daivietpda/rtl8822bs-aml.git
+[submodule "src/volumio-os"]
+	path = src/volumio-os
+	url = https://github.com/daivietpda/volumio-os.git

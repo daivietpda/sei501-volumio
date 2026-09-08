@@ -6,9 +6,10 @@ mnt/
 out/
 .volumio-kernel-update/
 
-# Full upstream checkouts are pinned by SOURCES.lock.md and intentionally kept
-# outside this integration repository.
-src/
+# Upstream source checkouts kept locally; ignore everything under src/ except git submodules
+src/*
+!src/rtl8822bs-aml/
+!src/volumio-os/
 
 # Large/generated platform payloads
 board/sei501/rootfs/
@@ -32,3 +33,5 @@ PLAN*.md
 
 # Private Markdown notes are local-only
 *.md
+!README.md
+!SOURCES.lock.md
