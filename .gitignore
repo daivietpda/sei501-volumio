@@ -34,4 +34,3 @@ PLAN*.md
 # Private Markdown notes are local-only
 *.md
 !README.md
-!SOURCES.lock.md

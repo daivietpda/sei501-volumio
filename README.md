@@ -6,7 +6,7 @@ recipe, and the runtime overlays used while bringing up the SEI501 board.
 
 The full upstream Volumio OS, Linux kernel, assembled rootfs, build output and
 burn-package/image files remain on the build disk but are deliberately ignored
-by Git. Their exact upstream revisions are recorded in [SOURCES.lock.md](SOURCES.lock.md).
+by Git.
 
 ## Layout
 
