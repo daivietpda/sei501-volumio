@@ -8,7 +8,17 @@ setenv bootargs "console=ttyAML0,115200n8 earlycon no_console_suspend loglevel=8
 if fatload mmc 0 0x01080000 Image; then
   if fatload mmc 0 0x13000000 uInitrd; then
     if fatload mmc 0 0x10000000 amlogic/meson-g12a-sei501.dtb; then
-      echo "SEI501 Volumio SD boot: starting kernel"
+      echo "SEI501 Volumio boot: starting kernel from SD card"
+      fdt addr 0x10000000
+      booti 0x01080000 0x13000000 0x10000000
+    fi
+  fi
+fi
+
+if fatload mmc 1:1 0x01080000 Image; then
+  if fatload mmc 1:1 0x13000000 uInitrd; then
+    if fatload mmc 1:1 0x10000000 amlogic/meson-g12a-sei501.dtb; then
+      echo "SEI501 Volumio boot: starting kernel from eMMC"
       fdt addr 0x10000000
       booti 0x01080000 0x13000000 0x10000000
     fi

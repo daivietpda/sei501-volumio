@@ -3,7 +3,7 @@
 
 echo "SEI501 Volumio SD boot: configuring persistent multiboot environment"
 
-setenv start_autoscript "if fatload mmc 0 0x01020000 sei501_autoscript; then autoscr 0x01020000; fi"
+setenv start_autoscript "if fatload mmc 0 0x01020000 sei501_autoscript; then autoscr 0x01020000; elif fatload mmc 1:1 0x01020000 sei501_autoscript; then autoscr 0x01020000; fi"
 setenv bootcmd "run start_autoscript; run storeboot"
 saveenv
 
