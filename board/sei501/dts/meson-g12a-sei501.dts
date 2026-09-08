@@ -51,6 +51,11 @@
 		sound-name-prefix = "MIC";
 	};
 
+	spdif_dit: audio-codec-2 {
+		compatible = "linux,spdif-dit";
+		#sound-dai-cells = <0>;
+	};
+
 	av_amp: audio-amplifier-0 {
 		compatible = "simple-audio-amplifier";
 		enable-gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
@@ -196,6 +201,9 @@
 				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
 				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
 				"TDM_B Playback", "TDMOUT_B OUT",
+				"SPDIFOUT_A IN 0", "FRDDR_A OUT 3",
+				"SPDIFOUT_A IN 1", "FRDDR_B OUT 3",
+				"SPDIFOUT_A IN 2", "FRDDR_C OUT 3",
 				"TODDR_A IN 4", "PDM Capture",
 				"TODDR_B IN 4", "PDM Capture",
 				"TODDR_C IN 4", "PDM Capture",
@@ -313,6 +321,19 @@
 
 			codec {
 				sound-dai = <&acodec>;
+			};
+		};
+
+		/* spdif toslink interface */
+		dai-link-11 {
+			sound-dai = <&spdifout_a>;
+
+			codec-0 {
+				sound-dai = <&spdif_dit>;
+			};
+
+			codec-1 {
+				sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_A>;
 			};
 		};
 	};
@@ -569,6 +590,12 @@
 };
 
 &toddr_c {
+	status = "okay";
+};
+
+&spdifout_a {
+	pinctrl-0 = <&spdif_out_h_pins>;
+	pinctrl-names = "default";
 	status = "okay";
 };
 

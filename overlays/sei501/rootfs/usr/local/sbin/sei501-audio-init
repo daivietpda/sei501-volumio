@@ -14,4 +14,11 @@
 /usr/bin/amixer -q -c SEI501 cset "name=ACODEC Unmute Ramp Switch" on || true
 /usr/bin/amixer -q -c SEI501 cset "name=ACODEC Playback Switch" on || true
 /usr/bin/amixer -q -c SEI501 cset "name=ACODEC Playback Volume" 210,210 || true
+
+# Optical SPDIF Out routing (Default: FRDDR_C -> SPDIFOUT_A for dedicated Optical playback)
+/usr/bin/amixer -q -c SEI501 cset "name=SPDIFOUT_A SRC SEL" 2 || true
+/usr/bin/amixer -q -c SEI501 cset "name=FRDDR_C SINK 3 SEL" 3 || true
+/usr/bin/amixer -q -c SEI501 cset "name=FRDDR_C SRC 3 EN Switch" on || true
+/usr/bin/amixer -q -c SEI501 cset "name=SPDIFOUT_A Playback Switch" on || true
+/usr/bin/amixer -q -c SEI501 cset "name=SPDIFOUT_A Playback Volume" 255,255 || true
 exit 0

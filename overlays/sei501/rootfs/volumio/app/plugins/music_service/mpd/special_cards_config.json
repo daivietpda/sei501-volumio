@@ -5,5 +5,8 @@
   ],
   "SEI501 AV 3.5 mm": [
     "always_on \"yes\""
+  ],
+  "SEI501 Optical SPDIF": [
+    "always_on \"yes\""
   ]
 }

@@ -1,6 +1,6 @@
 {
   "cards": [
-    {"name": "SEI501", "multidevice": true, "devices":[{"number":0, "prettyname": "SEI501 HDMI", "defaultmixer": "", "ignoreGenmixer": true}, {"number":1, "prettyname": "SEI501 AV 3.5 mm", "defaultmixer": "ACODEC"}], "type":"integrated"},
+    {"name": "SEI501", "multidevice": true, "devices":[{"number":0, "prettyname": "SEI501 HDMI", "defaultmixer": "", "ignoreGenmixer": true}, {"number":1, "prettyname": "SEI501 AV 3.5 mm", "defaultmixer": "ACODEC"}, {"number":2, "prettyname": "SEI501 Optical SPDIF", "defaultmixer": "", "ignoreGenmixer": true}], "type":"integrated"},
     {"name": "bcm2835 ALSA", "multidevice": false, "prettyname": "HDMI Out", "defaultmixer": "PCM","type":"integrated"},
     {"name": "bcm2835 HDMI 1", "multidevice": false, "prettyname": "HDMI Out", "defaultmixer": "HDMI","type":"integrated"},
     {"name": "vc4-hdmi-0", "multidevice": false, "prettyname": "HDMI 0 Out", "defaultmixer": "","type":"integrated"},
