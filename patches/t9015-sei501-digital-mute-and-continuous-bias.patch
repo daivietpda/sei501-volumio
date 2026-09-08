@@ -1,0 +1,127 @@
+From 24e011f2754a4ff8a5eea9769856b64a51bc1108 Mon Sep 17 00:00:00 2001
+From: daivietpda <3686023+daivietpda@users.noreply.github.com>
+Date: Tue, 8 Sep 2026 18:42:37 +0700
+Subject: [PATCH] ASoC: meson: t9015: eliminate pops and clicks on SEI501 3.5mm
+ AV
+
+---
+ sound/soc/meson/t9015.c | 58 +++++++++++++++++++++++++++++------------
+ 1 file changed, 41 insertions(+), 17 deletions(-)
+
+diff --git a/sound/soc/meson/t9015.c b/sound/soc/meson/t9015.c
+index 571f65788..2a5ff0320 100644
+--- a/sound/soc/meson/t9015.c
++++ b/sound/soc/meson/t9015.c
+@@ -78,8 +78,22 @@ static int t9015_dai_set_fmt(struct snd_soc_dai *dai, unsigned int fmt)
+ 	return 0;
+ }
+ 
++static int t9015_mute_stream(struct snd_soc_dai *dai, int mute, int direction)
++{
++	struct snd_soc_component *component = dai->component;
++
++	if (direction != SNDRV_PCM_STREAM_PLAYBACK)
++		return 0;
++
++	return snd_soc_component_update_bits(component, VOL_CTRL1,
++					     BIT(DAC_SOFT_MUTE),
++					     mute ? BIT(DAC_SOFT_MUTE) : 0);
++}
++
+ static const struct snd_soc_dai_ops t9015_dai_ops = {
+ 	.set_fmt = t9015_dai_set_fmt,
++	.mute_stream = t9015_mute_stream,
++	.mute_unmute_on_trigger = true,
+ };
+ 
+ static struct snd_soc_dai_driver t9015_dai = {
+@@ -138,15 +152,15 @@ static const struct snd_soc_dapm_widget t9015_dapm_widgets[] = {
+ 			 &t9015_right_dac_mux),
+ 	SND_SOC_DAPM_MUX("Left DAC Sel", SND_SOC_NOPM, 0, 0,
+ 			 &t9015_left_dac_mux),
+-	SND_SOC_DAPM_DAC("Right DAC", NULL, BLOCK_EN, DACR_EN, 0),
+-	SND_SOC_DAPM_DAC("Left DAC",  NULL, BLOCK_EN, DACL_EN, 0),
+-	SND_SOC_DAPM_OUT_DRV("Right- Driver", BLOCK_EN, LORN_EN, 0,
++	SND_SOC_DAPM_DAC("Right DAC", NULL, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_DAC("Left DAC",  NULL, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_OUT_DRV("Right- Driver", SND_SOC_NOPM, 0, 0,
+ 			 NULL, 0),
+-	SND_SOC_DAPM_OUT_DRV("Right+ Driver", BLOCK_EN, LORP_EN, 0,
++	SND_SOC_DAPM_OUT_DRV("Right+ Driver", SND_SOC_NOPM, 0, 0,
+ 			 NULL, 0),
+-	SND_SOC_DAPM_OUT_DRV("Left- Driver",  BLOCK_EN, LOLN_EN, 0,
++	SND_SOC_DAPM_OUT_DRV("Left- Driver",  SND_SOC_NOPM, 0, 0,
+ 			 NULL, 0),
+-	SND_SOC_DAPM_OUT_DRV("Left+ Driver",  BLOCK_EN, LOLP_EN, 0,
++	SND_SOC_DAPM_OUT_DRV("Left+ Driver",  SND_SOC_NOPM, 0, 0,
+ 			 NULL, 0),
+ 	SND_SOC_DAPM_OUTPUT("LORN"),
+ 	SND_SOC_DAPM_OUTPUT("LORP"),
+@@ -183,14 +197,7 @@ static int t9015_set_bias_level(struct snd_soc_component *component,
+ 
+ 	switch (level) {
+ 	case SND_SOC_BIAS_ON:
+-		snd_soc_component_update_bits(component, BLOCK_EN,
+-					      BIAS_CURRENT_EN,
+-					      BIAS_CURRENT_EN);
+-		break;
+ 	case SND_SOC_BIAS_PREPARE:
+-		snd_soc_component_update_bits(component, BLOCK_EN,
+-					      BIAS_CURRENT_EN,
+-					      0);
+ 		break;
+ 	case SND_SOC_BIAS_STANDBY:
+ 		ret = regulator_enable(priv->avdd);
+@@ -208,14 +215,18 @@ static int t9015_set_bias_level(struct snd_soc_component *component,
+ 			snd_soc_component_update_bits(component, BLOCK_EN,
+ 						      VMID_GEN_FAST,
+ 						      0);
++
++			/* Keep analog bias and drivers continuously powered in standby */
++			snd_soc_component_update_bits(component, BLOCK_EN,
++				BIAS_CURRENT_EN | BIT(DACR_EN) | BIT(DACL_EN) |
++				BIT(LORN_EN) | BIT(LORP_EN) | BIT(LOLN_EN) | BIT(LOLP_EN),
++				BIAS_CURRENT_EN | BIT(DACR_EN) | BIT(DACL_EN) |
++				BIT(LORN_EN) | BIT(LORP_EN) | BIT(LOLN_EN) | BIT(LOLP_EN));
+ 		}
+ 
+ 		break;
+ 	case SND_SOC_BIAS_OFF:
+-		snd_soc_component_update_bits(component, BLOCK_EN,
+-			VMID_GEN_EN | VMID_GEN_FAST | REFP_BUF_EN,
+-			0);
+-
++		snd_soc_component_write(component, BLOCK_EN, 0);
+ 		regulator_disable(priv->avdd);
+ 		break;
+ 	}
+@@ -231,6 +242,7 @@ static const struct snd_soc_component_driver t9015_codec_driver = {
+ 	.num_dapm_widgets	= ARRAY_SIZE(t9015_dapm_widgets),
+ 	.dapm_routes		= t9015_dapm_routes,
+ 	.num_dapm_routes	= ARRAY_SIZE(t9015_dapm_routes),
++	.idle_bias_on		= 1,
+ 	.suspend_bias_off	= 1,
+ 	.endianness		= 1,
+ };
+@@ -289,6 +301,18 @@ static int t9015_probe(struct platform_device *pdev)
+ 	 */
+ 	regmap_write(regmap, LINEOUT_CFG, 0x1111);
+ 
++	/*
++	 * Initialize hardware soft-ramps and start with DAC muted to prevent
++	 * pop/click on boot and during audio stream transitions.
++	 */
++	regmap_update_bits(regmap, VOL_CTRL1,
++			   BIT(DAC_SOFT_MUTE) | BIT(RAMP_RATE) |
++			   BIT(VC_RAMP_MODE) | BIT(MUTE_MODE) |
++			   BIT(UNMUTE_MODE),
++			   BIT(DAC_SOFT_MUTE) | BIT(RAMP_RATE) |
++			   BIT(VC_RAMP_MODE) | BIT(MUTE_MODE) |
++			   BIT(UNMUTE_MODE));
++
+ 	return devm_snd_soc_register_component(dev, &t9015_codec_driver,
+ 					       &t9015_dai, 1);
+ }
+-- 
+2.43.0
+

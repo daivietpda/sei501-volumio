@@ -8,6 +8,10 @@
 /usr/bin/amixer -q -c SEI501 cset "name=FRDDR_B SRC 2 EN Switch" on || true
 /usr/bin/amixer -q -c SEI501 cset "name=TOACODEC SRC" 1 || true
 /usr/bin/amixer -q -c SEI501 cset "name=TOACODEC OUT EN Switch" on || true
+/usr/bin/amixer -q -c SEI501 cset "name=ACODEC Ramp Rate" Slow || true
+/usr/bin/amixer -q -c SEI501 cset "name=ACODEC Volume Ramp Switch" on || true
+/usr/bin/amixer -q -c SEI501 cset "name=ACODEC Mute Ramp Switch" on || true
+/usr/bin/amixer -q -c SEI501 cset "name=ACODEC Unmute Ramp Switch" on || true
 /usr/bin/amixer -q -c SEI501 cset "name=ACODEC Playback Switch" on || true
 /usr/bin/amixer -q -c SEI501 cset "name=ACODEC Playback Volume" 210,210 || true
 exit 0
