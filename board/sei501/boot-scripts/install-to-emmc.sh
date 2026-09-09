@@ -51,6 +51,8 @@ mkfs.fat -F 32 -n "boot" -i D433ACED ${EMMC_DEV}p1
 mkdir -p /mnt/emmc_boot
 mount ${EMMC_DEV}p1 /mnt/emmc_boot
 cp -r /boot/* /mnt/emmc_boot/
+# Ensure SSH is enabled on eMMC
+touch /mnt/emmc_boot/ssh
 sync
 umount /mnt/emmc_boot
 
