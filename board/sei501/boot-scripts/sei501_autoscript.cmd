@@ -21,6 +21,20 @@ elif fatload mmc 1:1 0x01080000 Image; then
       booti 0x01080000 0x13000000 0x10000000
     fi
   fi
+elif fatload mmc 1:a 0x01080000 Image; then
+  echo "SEI501 Volumio: booting from eMMC (mmc 1:a)..."
+  if fatload mmc 1:a 0x02000000 mbr.bin; then
+    echo "SEI501 Volumio: initializing MBR partition table..."
+    mmc dev 1
+    mmc write 0x02000000 0 1
+  fi
+  setenv bootargs "console=ttyAML0,115200n8 earlycon no_console_suspend loglevel=8 nosplash use_kmsg=yes rootwait net.ifnames=0 elevator=noop maxcpus=4 consoleblank=0 hwdevice=sei501 imgpart=UUID=e7b69da6-0dd2-4ae8-aa7d-be4a4977405e bootpart=UUID=D433-ACED datapart=UUID=39baee08-4807-45ed-bc7f-e78acb180e13 uuidconfig=config.ini imgfile=/volumio_current.sqsh"
+  if fatload mmc 1:a 0x13000000 uInitrd; then
+    if fatload mmc 1:a 0x10000000 amlogic/meson-g12a-sei501.dtb; then
+      fdt addr 0x10000000
+      booti 0x01080000 0x13000000 0x10000000
+    fi
+  fi
 fi
 
 echo "SEI501 Volumio: boot failed"
