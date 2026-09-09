@@ -3,7 +3,7 @@ store disprotect key
 
 if fatload mmc 0 0x01080000 Image; then
   echo "SEI501 Volumio: booting from SD card (mmc 0)..."
-  setenv bootargs "console=ttyAML0,115200n8 earlycon no_console_suspend loglevel=8 nosplash use_kmsg=yes rootwait net.ifnames=0 elevator=noop maxcpus=4 consoleblank=0 hwdevice=sei501 imgpart=UUID=c84cb092-2dc7-47e2-b4c4-2c1a758344d0 bootpart=UUID=B2D9-740D datapart=UUID=f0d43802-0abb-417f-ac84-3f81f6bb427c uuidconfig=config.ini imgfile=/volumio_current.sqsh"
+  setenv bootargs "console=ttyAML0,115200n8 earlycon no_console_suspend loglevel=8 nosplash use_kmsg=yes rootwait net.ifnames=0 elevator=noop maxcpus=4 consoleblank=0 hwdevice=sei501 imgpart=UUID=%%IMG_UUID%% bootpart=UUID=%%BOOT_UUID%% datapart=UUID=%%DATA_UUID%% uuidconfig=config.ini imgfile=/volumio_current.sqsh"
   if fatload mmc 0 0x13000000 uInitrd; then
     if fatload mmc 0 0x10000000 amlogic/meson-g12a-sei501.dtb; then
       fdt addr 0x10000000
